@@ -1,0 +1,21 @@
+!xterm settings
+xterm*termName:xterm-256color
+xterm*visualBell:false
+xterm*marginBell:false
+xterm*saveLines:5000
+!Use a nice turetype font and size by default
+xterm*faceName:Anonymous Pro:antialias=true
+xterm*faceNameDoulesize:Source Han Sans CN:antialias=true
+xterm*faceSize:14
+xterm*scaleHeight:1.05
+xterm*locale:true
+!Position & frames
+!xterm*geometry:120x35+400+120
+xterm*borderLess:true
+xterm*scrollBar:true
+xterm*rightScrollBar:true
+xterm*cursorBlink:true
+!Color
+xterm*background:rgb:30/30/30
+xterm*foreground:white
+xterm*pointerColor:white
