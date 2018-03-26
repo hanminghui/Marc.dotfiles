@@ -1,0 +1,3 @@
+#! /bin/zsh
+# This run the shadowsocksr local client in background
+python ~/shadowsocksr/shadowsocks/local.py -c ~/documents/shadowsocksr_config.json &>/dev/null &
