@@ -1,7 +1,0 @@
-#! /bin/bash
-
-for i in `seq 1 8`
-	do
-		num=`man -k . -s $i | wc -l`
-		printf "There are %5s manuals in section %s\n" $num $i
-	done
