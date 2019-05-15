@@ -1,0 +1,17 @@
+# ┌────────────────────────────────────────────────┐
+# │                   Declaration                  │
+# └────────────────────────────────────────────────┘
+snippet deca "declare array"
+declare -a $1
+endsnippet
+
+# ┌────────────────────────────────────────────────┐
+# │                      Echo                      │
+# └────────────────────────────────────────────────┘
+snippet echov "echo variable"
+echo $$1
+endsnippet
+
+snippet echoa "echo array"
+echo ${$1[$2]}
+endsnippet

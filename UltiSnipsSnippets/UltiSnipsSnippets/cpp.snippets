@@ -1,0 +1,262 @@
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                    Comments                    │
+# └────────────────────────────────────────────────┘
+
+snippet /* "comment one line"
+/* $1 */
+endsnippet
+
+snippet /** "comment lines"
+/* $1
+ */
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                     include                    │
+# └────────────────────────────────────────────────┘
+
+snippet inc "#include" b
+#include <${1:LIBRARY}>
+endsnippet
+
+snippet incc "#include" b
+#include "${1:LIBRARY}"
+endsnippet
+
+snippet "(\w+).inc" "#include" rb
+#include <`!p snip.rv = match.group(1)`>
+endsnippet
+
+snippet "(\w+).incc" "#include" rb
+#include "`!p snip.rv = match.group(1)`"
+endsnippet
+
+# ================ Utilities Library ===============
+
+snippet incfun "functional" b
+#include <functional>
+endsnippet
+
+snippet incchr "chrono" b
+#include <chrono>
+endsnippet
+
+# ============ Dynamic memory management ===========
+
+snippet incmem "memory" b
+#include <memory>
+endsnippet
+
+# ================= Strings Library ================
+
+snippet incstr "string" b
+#include <string>
+endsnippet
+
+# =============== Containers Library ===============
+
+# --------------- Sequence Containers --------------
+
+snippet incarr "array" b
+#include <array>
+endsnippet
+
+snippet incvec "vector" b
+#include <vector>
+endsnippet
+
+snippet incdqu "deque" b
+#include <deque>
+endsnippet
+
+snippet inclis "list" b
+#include <list>
+endsnippet
+
+snippet incflis "forward_list" b
+#include <forward_list>
+endsnippet
+
+# ------------- Associative containers -------------
+
+snippet incset "set" b
+#include <set>
+endsnippet
+
+snippet incmap "map" b
+#include <map>
+endsnippet
+
+snippet incuset "unordered_set" b
+#include <unordered_set>
+endsnippet
+
+snippet incumap "unordered_map" b
+#include <unordered_map>
+endsnippet
+
+# --------------- Container adaptors ---------------
+
+snippet incsta "stack" b
+#include <stack>
+endsnippet
+
+snippet incque "queue" b
+#include <queue>
+endsnippet
+
+snippet incspa "span" b
+#include <span>
+endsnippet
+
+# ================ Iterators Library ===============
+
+snippet incite "iterator" b
+#include <iterator>
+endsnippet
+
+# =============== Algorithms Library ===============
+
+snippet incalg "algorithm" b
+#include <algorithm>
+endsnippet
+
+# ================ Numerics Library ================
+
+snippet inccma "cmath" b
+#include <cmath>
+endsnippet
+
+snippet incran "random" b
+#include <random>
+endsnippet
+
+# ============== Input/output Library ==============
+
+snippet incio "iostream" b
+#include <iostream>
+endsnippet
+
+# ============= Thread Support Library =============
+
+snippet incthr "thread" b
+#include <thread>
+endsnippet
+
+snippet incmut "mutex" b
+#include <mutex>
+endsnippet
+
+snippet incfut "future" b
+#include <future>
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                      main                      │
+# └────────────────────────────────────────────────┘
+
+snippet main "add main function"
+int main(int argc, char *argv[])
+{
+    return 0;
+}
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                    Function                    │
+# └────────────────────────────────────────────────┘
+
+snippet fun "simple function"
+${2:RETURN} ${1:FUNC_NAME}(${3:PARAMETER})
+{
+    ${4:STATEMENT}
+}
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                  Flow Control                  │
+# └────────────────────────────────────────────────┘
+
+# ----------------------- if -----------------------
+
+snippet if "simple if"
+if(${1:CONDITION})
+{
+    ${2:STATEMENT}
+}
+endsnippet
+
+snippet else "simple else"
+else
+{
+    ${1:STATEMENT}
+}
+endsnippet
+
+# ---------------------- while ---------------------
+
+snippet while "simple while"
+while(${1:CONDITION})
+{
+    ${2:STATEMENT}
+}
+endsnippet
+
+# ----------------------- for ----------------------
+
+snippet for "simple for"
+for(${1:INITIALIZATION}; ${2:CONDITION}; ${3:ITERATION})
+{
+    ${4:STATEMENT}
+}
+endsnippet
+
+#for from 0 to number or int variable
+# ------------------------------
+snippet "for([\w\d]+)" "for" r
+for(int i = 0; i < `!p snip.rv = match.group(1)`; ++i)
+{
+    ${1:STATEMENT}
+}
+endsnippet
+#for from x to y
+# ------------------------------
+priority 1
+snippet "for([\w\d]+)to([\w\d]+)" "for" r
+for(int i = `!p snip.rv = match.group(1)`; i < `!p snip.rv = match.group(2)`; ++i)
+{
+    ${1:STATEMENT}
+}
+endsnippet
+priority 0
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                  Input/Output                  │
+# └────────────────────────────────────────────────┘
+
+snippet cout "std::cout"
+std::cout << ${1:out};
+endsnippet
+
+snippet couts "std::cout"
+std::cout << "${1:out}";
+endsnippet
+
+snippet coute "std::cout"
+std::cout << ${1:out} << std::endl;
+endsnippet
+
+snippet coutes "std::cout"
+std::cout << "${1:out}" << std::endl;
+endsnippet
+
+snippet cin "std::cin"
+std::cin >> ${1:IN};
+endsnippet
+

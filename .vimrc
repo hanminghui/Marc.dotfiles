@@ -55,6 +55,9 @@ Plug 'ervandew/supertab'
 
 " --------------------------------------------------
 Plug 'Valloric/YouCompleteMe'
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -79,6 +82,7 @@ let g:ycm_filetype_whitelist = {
 			\ "c":1,
 			\ "cpp":1, 
 			\ "objc":1,
+			\ "python":1, 
 			\ "sh":1,
 			\ "zsh":1,
 			\ "zimbu":1,
@@ -90,8 +94,8 @@ let g:UltiSnipsEditSplit = "tabdo"
 let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnipsSnippets"
 let g:UltiSnipsSnippetDirectories = ['UltiSnipsSnippets']
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-tab>"
 
 " --------------------------------------------------
 Plug 'Shougo/echodoc.vim'
@@ -102,6 +106,35 @@ set noshowmode
 " --------------------------------------------------
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='base16_grayscale'
+
+" --------------------------------------------------
+Plug 'https://github.com/luochen1990/rainbow'
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+ \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+ \ 'ctermfgs': ['White', 'Cyan', 'Magenta', 'Green', 'Blue', 'Yellow', 'Red'],
+ \ 'operators': '_,_',
+ \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+ \ 'separately': {
+ \  '*': {},
+ \  'cpp': {
+ \   'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/'],
+ \  },
+ \  'tex': {
+ \   'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+ \  },
+ \  'lisp': {
+ \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+ \  },
+ \  'vim': {
+ \   'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+ \  },
+ \  'html': {
+ \   'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+ \  },
+ \  'css': 0,
+ \ }
+ \}
 
 " --------------------------------------------------
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -117,10 +150,13 @@ let g:asyncrun_bell = 1
 
 " 设置 F10 打开/关闭 Quickfix 窗口
 nnoremap <silent> ,0 :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <silent> <F10> :call asyncrun#quickfix_toggle(6)<cr>
 " 设置 F9  编译单文件
 nnoremap <silent> ,9 :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <silent> <F9> :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 " 设置 F5  运行
 nnoremap <silent> ,5 :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 " 设置 F7  编译整个项目
 nnoremap <silent> ,7 :AsyncRun -cwd=<root> make <cr>

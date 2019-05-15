@@ -20,4 +20,4 @@ cp ~/.zshrc ./.zshrc
 cp ~/.zprofile ./.zprofile
 
 # some scripts
-cp ~/bin/ssr ./ssr 
+cp -r ~/scripts scripts 
