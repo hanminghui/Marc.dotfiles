@@ -1,19 +1,19 @@
 # Backup config files
 # vim
-cp ~/.vimrc ./.vimrc;
+cp ~/.vimrc ./.vimrc
 cp -r ~/.vim/UltiSnipsSnippets ./UltiSnipsSnippets
 
 # tmux
-cp ~/.tmux.conf ./.tmux.conf;
+cp ~/.tmux.conf ./.tmux.conf
 
 # i3
-cp ~/.config/i3/config ./i3.config;
+cp -r ~/.config/i3 i3
 
 # X
-cp ~/.Xresources ./.Xresources;
+cp ~/.Xresources ./.Xresources
 
 # git
-cp ~/.gitconfig ./.gitconfig;
+cp ~/.gitconfig ./.gitconfig
 
 # zsh
 cp ~/.zshrc ./.zshrc
