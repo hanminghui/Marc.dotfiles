@@ -1,22 +1,37 @@
+#! /bin/bash
+
 # Backup config files
+
+files=()
 # vim
-cp ~/.vimrc ./.vimrc
-cp -r ~/.vim/UltiSnipsSnippets ./
-
+files+=($HOME/.vimrc)
+files+=($HOME/.vim/UltiSnipsSnippets)
 # tmux
-cp ~/.tmux.conf ./.tmux.conf
-
+files+=($HOME/.tmux.conf)
 # i3
-cp -r ~/.config/i3 ./
-
+files+=($HOME/.config/i3)
 # X
-cp ~/.Xresources ./.Xresources
-
+files+=($HOME/.Xresources)
 # git
-cp ~/.gitconfig ./.gitconfig
-
+files+=($HOME/.gitconfig)
 # zsh
-cp ~/.zshrc ./.zshrc
-
+files+=($HOME/.zshrc)
+files+=($HOME/.zprofile)
 # some scripts
-cp -r ~/scripts ./
+files+=($HOME/scripts)
+
+for i in ${files[@]}
+do
+	if [[ -d $i ]]
+	then
+		cp -r $i ./
+		echo "Successfully backup directory: $i"
+	elif [[ -f $i ]]
+	then
+		cp $i ./
+		echo "Successfully backup file     : $i"
+	else
+		echo  -e "\033[38;5;202mNo such file or directory    : ${i}\033[0m"
+		exit 1
+	fi
+done
