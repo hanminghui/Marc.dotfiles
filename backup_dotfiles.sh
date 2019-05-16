@@ -20,18 +20,28 @@ files+=($HOME/.zprofile)
 # some scripts
 files+=($HOME/scripts)
 
+echo ==================================================
+echo Start backup
+echo --------------------------------------------------
+count=0
 for i in ${files[@]}
 do
 	if [[ -d $i ]]
 	then
+		count=$((count+1))
 		cp -r $i ./
 		echo "Successfully backup directory: $i"
 	elif [[ -f $i ]]
 	then
+		count=$((count+1))
 		cp $i ./
 		echo "Successfully backup file     : $i"
 	else
 		echo  -e "\033[38;5;202mNo such file or directory    : ${i}\033[0m"
-		exit 1
 	fi
 done
+echo --------------------------------------------------
+all=${#files[@]}
+fail=$(($all-$count))
+echo Success: $count, Fail: $fail, in $all files
+echo ==================================================

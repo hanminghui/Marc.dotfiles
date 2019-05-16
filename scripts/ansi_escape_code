@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# 256 color
 for row in `seq 0 15`
 do
 	for col in `seq 0 15`
