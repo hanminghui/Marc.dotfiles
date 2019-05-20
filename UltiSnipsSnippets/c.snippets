@@ -1,0 +1,117 @@
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                    Comments                    │
+# └────────────────────────────────────────────────┘
+
+snippet /* "comment one line"
+/* $1 */
+endsnippet
+
+snippet /** "comment lines"
+/* $1
+ */
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                     include                    │
+# └────────────────────────────────────────────────┘
+
+snippet inc "#include" b
+#include <${1:LIBRARY}>
+endsnippet
+
+snippet incc "#include" b
+#include "${1:LIBRARY}"
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                     define                     │
+# └────────────────────────────────────────────────┘
+
+snippet def "#define" b
+#define ${1:MACROS}
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                      main                      │
+# └────────────────────────────────────────────────┘
+
+snippet main "add main function"
+int main(int argc, char *argv[])
+{
+    return 0;
+}
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                    Function                    │
+# └────────────────────────────────────────────────┘
+
+snippet fun "simple function"
+${2:RETURN} ${1:FUNC_NAME}(${3:PARAMETER})
+{
+    ${4:STATEMENT}
+}
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                  Flow Control                  │
+# └────────────────────────────────────────────────┘
+
+# ----------------------- if -----------------------
+
+snippet if "simple if"
+if(${1:CONDITION})
+{
+    ${2:STATEMENT}
+}
+endsnippet
+
+snippet else "simple else"
+else
+{
+    ${1:STATEMENT}
+}
+endsnippet
+
+# ---------------------- while ---------------------
+
+snippet while "simple while"
+while(${1:CONDITION})
+{
+    ${2:STATEMENT}
+}
+endsnippet
+
+# ----------------------- for ----------------------
+
+snippet for "simple for"
+for(${1:INITIALIZATION}; ${2:CONDITION}; ${3:ITERATION})
+{
+    ${4:STATEMENT}
+}
+endsnippet
+
+#for from 0 to number or int variable
+# ------------------------------
+snippet "for([\w\d]+)" "for" r
+for(int i = 0; i < `!p snip.rv = match.group(1)`; ++i)
+{
+    ${1:STATEMENT}
+}
+endsnippet
+#for from x to y
+# ------------------------------
+priority 1
+snippet "for([\w\d]+)to([\w\d]+)" "for" r
+for(int i = `!p snip.rv = match.group(1)`; i < `!p snip.rv = match.group(2)`; ++i)
+{
+    ${1:STATEMENT}
+}
+endsnippet
+priority 0
