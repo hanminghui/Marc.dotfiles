@@ -14,12 +14,30 @@ syntax on
 set smartindent
 set backspace=indent,eol,start
 
+" fold
+set foldmethod=syntax
+set nofoldenable
+" scroll
+nnoremap <Up> <C-Y>k
+nnoremap <Down> <C-E>j
+set mouse=a
+map <ScrollWheelUp> <C-Y>k
+map <ScrollWheelDown> <C-E>j
 " path
 set path=.,/usr/include,,
 set path+=/usr/include/c++/8.3.0
 set path+=/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include/
+" noshowmode need by plug echodoc and airline
+set noshowmode
 
-" jump to header in new tab
+" leader key
+" --------------------------------------------------------------------------------
+let mapleader = " "
+nnoremap <leader>; A;<ESC>
+nnoremap <leader>h gT
+nnoremap <leader>l gt
+
+"  jump to header in new tab
 " --------------------------------------------------------------------------------
 nnoremap gf <C-W>gf
 
@@ -40,13 +58,7 @@ nnoremap gf <C-W>gf
 " New space
 " --------------------------------------------------------------------------------
 " press SPACE to add a space
-nmap <SPACE> a<SPACE><ESC>h
-
-" Draw a line
-" --------------------------------------------------------------------------------
-" press <-> to add a minus directly, easy to draw a line with numbers
-" e.g. 50- to input 50 minus to draw a line occupy 50 characters
-nmap - a-<ESC>
+" nmap <SPACE> a<SPACE><ESC>h
 
 " Commenting blocks of code.
 " --------------------------------------------------------------------------------
@@ -113,6 +125,9 @@ let g:UltiSnipsJumpForwardTrigger = "<s-tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-tab>"
 
 " --------------------------------------------------
+Plug 'jiangmiao/auto-pairs'
+
+" --------------------------------------------------
 Plug 'ludovicchabant/vim-gutentags'
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -145,10 +160,11 @@ let g:gutentags_auto_add_gtags_cscope = 0
 
 " --------------------------------------------------
 Plug 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
 
 " --------------------------------------------------
 Plug 'vim-airline/vim-airline'
-set noshowmode
+
 " --------------------------------------------------
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='base16_grayscale'
@@ -195,22 +211,26 @@ let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
 
 " 设置 F10 打开/关闭 Quickfix 窗口
-nnoremap <silent> ,0 :call asyncrun#quickfix_toggle(6)<cr>
 nnoremap <silent> <F10> :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <silent> ,0 :call asyncrun#quickfix_toggle(6)<cr>
 " 设置 F9  编译单文件
-nnoremap <silent> ,9 :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 nnoremap <silent> <F9> :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <silent> ,9 :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 " 设置 F5  运行
-nnoremap <silent> ,5 :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <silent> ,5 :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 " 设置 F7  编译整个项目
+nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
 nnoremap <silent> ,7 :AsyncRun -cwd=<root> make <cr>
 " 设置 F8  运行整个项目
+nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
 nnoremap <silent> ,8 :AsyncRun -cwd=<root> -raw make run <cr>
 " 设置 F6  执行测试
+nnoremap <silent> <F6> :AsyncRun -cwd=<root> -raw make test <cr>
 nnoremap <silent> ,6 :AsyncRun -cwd=<root> -raw make test <cr>
 " 设置 F4  更新Makefile文件
+nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 nnoremap <silent> ,4 :AsyncRun -cwd=<root> cmake . <cr>
 
 call plug#end()
