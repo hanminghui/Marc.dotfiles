@@ -36,6 +36,7 @@ let mapleader = " "
 nnoremap <leader>; A;<ESC>
 nnoremap <leader>h gT
 nnoremap <leader>l gt
+nnoremap <silent><Leader>] <C-w><C-]><C-w>T
 
 "  jump to header in new tab
 " --------------------------------------------------------------------------------

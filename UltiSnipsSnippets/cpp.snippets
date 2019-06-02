@@ -3,6 +3,19 @@ extends c
 
 # ==================================================
 # ┌────────────────────────────────────────────────┐
+# │                    namespace                   │
+# └────────────────────────────────────────────────┘
+
+snippet un "using namesapce"
+using namespace ${1:NAMESPACE};
+endsnippet
+
+snippet s: "std::"
+std::
+endsnippet
+
+# ==================================================
+# ┌────────────────────────────────────────────────┐
 # │                     include                    │
 # └────────────────────────────────────────────────┘
 
@@ -36,6 +49,10 @@ snippet incstr "string" b
 #include <string>
 endsnippet
 
+snippet str "string" w
+std::string
+endsnippet
+
 # =============== Containers Library ===============
 
 # --------------- Sequence Containers --------------
@@ -44,8 +61,16 @@ snippet incarr "array" b
 #include <array>
 endsnippet
 
+snippet arr "array"
+std::array<${1:TYPE}> ${2:NAME}
+endsnippet
+
 snippet incvec "vector" b
 #include <vector>
+endsnippet
+
+snippet vec "vector"
+std::vector<${1:TYPE}> ${2:NAME}
 endsnippet
 
 snippet incdqu "deque" b
@@ -56,6 +81,10 @@ snippet inclis "list" b
 #include <list>
 endsnippet
 
+snippet list "list"
+std::list<${1:TYPE}> ${2:NAME}
+endsnippet
+
 snippet incflis "forward_list" b
 #include <forward_list>
 endsnippet
@@ -64,6 +93,10 @@ endsnippet
 
 snippet incset "set" b
 #include <set>
+endsnippet
+
+snippet set "set"
+std::set<${1:TYPE}> ${2:NAME}
 endsnippet
 
 snippet incmap "map" b
