@@ -1,3 +1,6 @@
+" ┌────────────────────────────────────────────────┐
+" │                   atrributes                   │
+" └────────────────────────────────────────────────┘
 set shortmess=atI
 " set lines=35 columns=100
 colorscheme desert
@@ -13,6 +16,9 @@ set shiftwidth=4
 syntax on
 set smartindent
 set backspace=indent,eol,start
+
+highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
+highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
 " fold
 set foldmethod=syntax
@@ -30,21 +36,27 @@ set path+=/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include/
 " noshowmode need by plug echodoc and airline
 set noshowmode
 
+" ┌────────────────────────────────────────────────┐
+" │                       map                      │
+" └────────────────────────────────────────────────┘
+
 " leader key
 " --------------------------------------------------------------------------------
 let mapleader = " "
+" add ; to the end of the line
 nnoremap <leader>; A;<ESC>
+" go to tab left
 nnoremap <leader>h gT
+" go to tab right
 nnoremap <leader>l gt
+" jump to definition in new tab
 nnoremap <silent><Leader>] <C-w><C-]><C-w>T
+" go to next window
+nnoremap <silent><Leader>w <C-w><C-w>
 
 "  jump to header in new tab
 " --------------------------------------------------------------------------------
 nnoremap gf <C-W>gf
-
-" open help in new tab
-" --------------------------------------------------------------------------------
-:cabbrev help tab help
 
 " New line
 " --------------------------------------------------------------------------------
@@ -72,9 +84,20 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
-" --------------------------------------------------------------------------------
-" vim-plug
-" --------------------------------------------------------------------------------
+" :help open help in new tab
+" --------------------------------------------------
+cnoreabbrev <expr> help 
+	\ getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+" :e to edit file in new tab
+" --------------------------------------------------
+cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabe' : 'e'
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" ┌────────────────────────────────────────────────┐
+" │                    vim-plugs                   │
+" └────────────────────────────────────────────────┘
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -168,7 +191,7 @@ Plug 'vim-airline/vim-airline'
 
 " --------------------------------------------------
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='base16_grayscale'
+let g:airline_theme='base16_monokai'
 
 " --------------------------------------------------
 Plug 'https://github.com/luochen1990/rainbow'
@@ -234,8 +257,11 @@ nnoremap <silent> ,6 :AsyncRun -cwd=<root> -raw make test <cr>
 nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 nnoremap <silent> ,4 :AsyncRun -cwd=<root> cmake . <cr>
 
+" 延迟按需加载，使用到命令的时候再加载或者打开对应文件类型才加载
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" F4 open the tree
+map <F3> :NERDTreeToggle<CR>
+
 call plug#end()
 
-highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
