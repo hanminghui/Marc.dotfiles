@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IP_ADDRESS=$(ifconfig ens33 | grep 'inet' | grep 'netmask' | cut -d'_' -f2 | awk '{print $2}')
+
+if [[ "${IP_ADDRESS}" != "" ]]; then
+  echo "${IP_ADDRESS}"
+fi

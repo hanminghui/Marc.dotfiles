@@ -12,6 +12,13 @@ snippet /** "comment lines"
  */
 endsnippet
 
+# draw a fix length comment with string in it
+# example: 50/*
+# ------------------------------
+snippet "(\d+)com" "fixed length comments" r
+/*`!p snip.rv = " " * int(int(match.group(1)) - len(t[1]) - int((int(match.group(1)) - len(t[1]))/2) - 3)` ${1:COMMENT} `!p snip.rv = " " * int((int(match.group(1)) - len(t[1]))/2 - 3)`*/
+endsnippet
+
 # ==================================================
 # ┌────────────────────────────────────────────────┐
 # │                     include                    │
@@ -115,6 +122,23 @@ for(int i = `!p snip.rv = match.group(1)`; i < `!p snip.rv = match.group(2)`; ++
 }
 endsnippet
 priority 0
+
+# --------------------- switch ---------------------
+
+snippet switch "switch"
+switch(${1:CONDITION})
+{
+	case ${2:CASE}: ${3:STATEMENTS}
+}
+endsnippet
+
+snippet case "switch case"
+case ${1:CASE}: ${2:STATEMENTS}
+endsnippet
+
+snippet default "switch default"
+default : ${1:STATEMENTS}
+endsnippet
 
 # ==================================================
 # ┌────────────────────────────────────────────────┐
