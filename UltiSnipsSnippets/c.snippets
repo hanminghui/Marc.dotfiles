@@ -26,10 +26,12 @@ endsnippet
 
 snippet inc "#include" b
 #include <${1:LIBRARY}>
+$2
 endsnippet
 
 snippet incc "#include" b
 #include "${1:LIBRARY}"
+$2
 endsnippet
 
 # ==================================================
@@ -49,6 +51,7 @@ endsnippet
 snippet main "add main function"
 int main(int argc, char *argv[])
 {
+    ${1:STATEMENTS}
     return 0;
 }
 endsnippet

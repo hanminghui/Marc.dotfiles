@@ -53,6 +53,8 @@ nnoremap <leader>l gt
 nnoremap <silent><Leader>] <C-w><C-]><C-w>T
 " go to next window
 nnoremap <silent><Leader>w <C-w><C-w>
+" call ToggleVirtualEdit in my scripts
+nnoremap <leader>v :call ToggleVirtualEdit()<CR>
 
 "  jump to header in new tab
 " --------------------------------------------------------------------------------
@@ -262,6 +264,31 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " F4 open the tree
 map <F3> :NERDTreeToggle<CR>
 
+" --------------------------------------------------
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+let g:easy_align_delimiters = {
+\ '/': {
+\     'pattern':         '//\+\|/\*\|\*/',
+\     'delimiter_align': 'l',
+\     'ignore_groups':   ['!Comment'] },
+\ }
+
 call plug#end()
 
-
+" ┌────────────────────────────────────────────────┐
+" │                   my scripts                   │
+" └────────────────────────────────────────────────┘
+function ToggleVirtualEdit ()
+	if &ve ==# ""
+		set ve=all
+		echo "ToggleVirtualEdit [ all ]"
+	elseif &ve ==# "all"
+		set ve=
+		echo "ToggleVirtualEdit [ default ]"
+	endif
+endfunction
