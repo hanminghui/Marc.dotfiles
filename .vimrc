@@ -1,3 +1,4 @@
+" PART 1
 " ┌────────────────────────────────────────────────┐
 " │                   atrributes                   │
 " └────────────────────────────────────────────────┘
@@ -33,9 +34,11 @@ map <ScrollWheelDown> <C-E>j
 set path=.,/usr/include,,
 set path+=/usr/include/c++/8.3.0
 set path+=/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include/
+set path+=/usr/include/gtk-3.0
 " noshowmode need by plug echodoc and airline
 set noshowmode
 
+" PART 2
 " ┌────────────────────────────────────────────────┐
 " │                       map                      │
 " └────────────────────────────────────────────────┘
@@ -97,6 +100,7 @@ cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabe' : 'e'
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+" PART 3
 " ┌────────────────────────────────────────────────┐
 " │                    vim-plugs                   │
 " └────────────────────────────────────────────────┘
@@ -280,6 +284,7 @@ let g:easy_align_delimiters = {
 
 call plug#end()
 
+" PART 4
 " ┌────────────────────────────────────────────────┐
 " │                   my scripts                   │
 " └────────────────────────────────────────────────┘
