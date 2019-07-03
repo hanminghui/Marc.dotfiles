@@ -282,6 +282,9 @@ let g:easy_align_delimiters = {
 \     'ignore_groups':   ['!Comment'] },
 \ }
 
+" --------------------------------------------------
+Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 
 " PART 4
