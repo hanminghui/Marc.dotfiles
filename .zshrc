@@ -100,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cp='cp -i'
 alias mv='mv -i'
+# --------------------------------------------------
+# alias for pacman
+# update all packages
+alias pacmanua='sudo pacman -Syu'
