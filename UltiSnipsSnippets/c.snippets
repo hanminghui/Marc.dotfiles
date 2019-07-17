@@ -32,6 +32,14 @@ snippet incc "#include" b
 #include "${1:LIBRARY}"
 endsnippet
 
+snippet "(\w+).inc" "#include" rb
+#include <`!p snip.rv = match.group(1)`>
+endsnippet
+
+snippet "(\w+).incc" "#include" rb
+#include "`!p snip.rv = match.group(1)`.h"
+endsnippet
+
 # ==================================================
 # ┌────────────────────────────────────────────────┐
 # │                     define                     │
@@ -41,17 +49,15 @@ snippet def "#define" b
 #define ${1:MACROS}
 endsnippet
 
-# ==================================================
-# ┌────────────────────────────────────────────────┐
-# │                      main                      │
-# └────────────────────────────────────────────────┘
+snippet stru "struct declare" w
+struct ${1:TYPE} ${2:VARIABLE}
+endsnippet
 
-snippet main "add main function"
-int main(int argc, char *argv[])
+snippet struct "struct define"
+struct ${1:TYPE}
 {
-    ${1:STATEMENTS}
-    return 0;
-}
+    ${2:MEMBER}
+};
 endsnippet
 
 # ==================================================
@@ -59,10 +65,22 @@ endsnippet
 # │                    Function                    │
 # └────────────────────────────────────────────────┘
 
-snippet fun "simple function"
+snippet f "simple function"
 ${2:RETURN} ${1:FUNC_NAME}(${3:PARAMETER})
 {
     ${4:STATEMENTS}
+}
+endsnippet
+
+snippet r "return"
+return ${1:RET_VAL};
+endsnippet
+
+snippet main "add main function"
+int main(int argc, char *argv[])
+{
+    ${1:STATEMENTS}
+    return 0;
 }
 endsnippet
 
@@ -80,11 +98,26 @@ if(${1:CONDITION})
 }
 endsnippet
 
+snippet ifs "short if"
+if(${1:CONDITION}) ${2:STATEMENTS}
+endsnippet
+
 snippet else "simple else"
 else
 {
     ${1:STATEMENTS}
 }
+endsnippet
+
+snippet elif "else if"
+else if(${1:CONDITION})
+{
+    ${2:STATEMENTS}
+}
+endsnippet
+
+snippet elifs "short else if"
+else if(${1:CONDITION}) ${2:STATEMENTS}
 endsnippet
 
 # ---------------------- while ---------------------

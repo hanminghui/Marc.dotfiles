@@ -19,14 +19,6 @@ endsnippet
 # │                     include                    │
 # └────────────────────────────────────────────────┘
 
-snippet "(\w+).inc" "#include" rb
-#include <`!p snip.rv = match.group(1)`>
-endsnippet
-
-snippet "(\w+).incc" "#include" rb
-#include "`!p snip.rv = match.group(1)`"
-endsnippet
-
 # ================ Utilities Library ===============
 
 snippet incfun "functional" b
