@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/scripts
+# for ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/han/.oh-my-zsh"
@@ -65,7 +69,10 @@ ZSH_THEME="junkfood"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(
+	    git 
+	    vi-mode
+	    )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,7 +107,45 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cp='cp -i'
 alias mv='mv -i'
+alias W='whatis'
+alias M='man'
+alias WC='wc -l'
+alias E='exit'
 # --------------------------------------------------
 # alias for pacman
 # update all packages
 alias pacmanua='sudo pacman -Syu'
+alias pacmani='sudo pacman -S'
+
+# ================================================================================
+# key bindings
+#
+typeset -A key
+key=(
+  BackSpace  "${terminfo[kbs]}"
+  Home       "${terminfo[khome]}"
+  End        "${terminfo[kend]}"
+  Insert     "${terminfo[kich1]}"
+  Delete     "${terminfo[kdch1]}"
+  Up         "${terminfo[kcuu1]}"
+  Down       "${terminfo[kcud1]}"
+  Left       "${terminfo[kcub1]}"
+  Right      "${terminfo[kcuf1]}"
+  PageUp     "${terminfo[kpp]}"
+  PageDown   "${terminfo[knp]}"
+)
+
+# Setup key accordingly
+[[ -n "${key[BackSpace]}" ]] && bindkey "${key[BackSpace]}" backward-delete-char
+[[ -n "${key[Home]}"      ]] && bindkey "${key[Home]}" beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey "${key[End]}" end-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n "${key[Delete]}"    ]] && bindkey "${key[Delete]}" delete-char
+[[ -n "${key[Up]}"        ]] && bindkey "${key[Up]}" up-line-or-beginning-search
+[[ -n "${key[Down]}"      ]] && bindkey "${key[Down]}" down-line-or-beginning-search
+[[ -n "${key[PageUp]}"    ]] && bindkey "${key[PageUp]}" beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}"  ]] && bindkey "${key[PageDown]}" end-of-buffer-or-history
+[[ -n "${key[Home]}"      ]] && bindkey -M vicmd "${key[Home]}" beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -M vicmd "${key[End]}" end-of-line
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search

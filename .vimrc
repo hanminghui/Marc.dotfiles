@@ -58,6 +58,8 @@ nnoremap <silent><Leader>] <C-w><C-]><C-w>T
 nnoremap <silent><Leader>w <C-w><C-w>
 " call ToggleVirtualEdit in my scripts
 nnoremap <leader>v :call ToggleVirtualEdit()<CR>
+" call ToggleLineNumber in my scripts
+nnoremap <leader>n :call ToggleLineNumber()<CR>
 
 "  jump to header in new tab
 " --------------------------------------------------------------------------------
@@ -298,3 +300,14 @@ function ToggleVirtualEdit ()
 		echo "ToggleVirtualEdit [ default ]"
 	endif
 endfunction
+
+function ToggleLineNumber ()
+	if &number ==# "1"
+		set nonumber
+		echo "turn OFF line number"
+	elseif &number ==# "0"
+		set number
+		echo "turn ON line number"
+	endif
+endfunction
+

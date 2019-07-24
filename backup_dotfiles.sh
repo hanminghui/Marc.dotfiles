@@ -12,15 +12,20 @@ files+=($HOME/.vim/UltiSnipsSnippets)
 files+=($HOME/.tmux.conf)
 # i3
 files+=($HOME/.config/i3)
+# ibus-rime
+files+=($HOME/.config/ibus/rime)
 # X
+files+=($HOME/.xinitrc)
 files+=($HOME/.Xresources)
+files+=($HOME/.xprofile)
 # git
 files+=($HOME/.gitconfig)
 # zsh
 files+=($HOME/.zshrc)
-files+=($HOME/.zprofile)
 # some scripts
 files+=($HOME/scripts)
+# pacman source
+files+=(/etc/pacman.d/mirrorlist)
 
 echo ================================================================================
 echo Start backup
