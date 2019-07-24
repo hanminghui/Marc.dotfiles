@@ -1,5 +1,5 @@
 patch:
   schema_list:
-    - schema: wubi86
+    - schema: han
     - schema: luna_pinyin_simp
-  "menu/page_size": 9
+  "menu/page_size": 5

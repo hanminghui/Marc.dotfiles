@@ -112,6 +112,9 @@ alias M='man'
 alias WC='wc -l'
 alias E='exit'
 # --------------------------------------------------
+# open VIM with no plugins or vimrc, for large files
+alias VIM='vim -u NONE'
+# --------------------------------------------------
 # alias for pacman
 # update all packages
 alias pacmanua='sudo pacman -Syu'

@@ -2,12 +2,9 @@ __build_info:
   rime_version: 1.4.0
   timestamps:
     default: 1526362370
-    default.custom: 1563934773
-    stroke.custom: 0
-    stroke.schema: 1526362370
-abc_segmentor:
-  extra_tags:
-    - reverse_lookup
+    default.custom: 1563947731
+    han.custom: 0
+    han.schema: 1563948596
 engine:
   processors:
     - ascii_composer
@@ -28,6 +25,7 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - table_translator
+    - "lua_translator@date_translator"
 key_binder:
   bindings:
     - {accept: "Control+p", send: Up, when: composing}
@@ -62,9 +60,13 @@ key_binder:
     - {accept: "Control+Shift+percent", toggle: extended_charset, when: always}
     - {accept: "Shift+space", toggle: full_shape, when: always}
     - {accept: "Control+period", toggle: ascii_punct, when: always}
+    - {accept: space, send: space, when: has_menu}
+    - {accept: space, send: Escape, when: composing}
+    - {accept: semicolon, send: 2, when: has_menu}
+    - {accept: apostrophe, send: 3, when: has_menu}
   import_preset: default
 menu:
-  page_size: 9
+  page_size: 5
 punctuator:
   full_shape:
     " ": {commit: "　"}
@@ -138,49 +140,51 @@ recognizer:
   import_preset: default
   patterns:
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
-    reverse_lookup: "`[a-z]*'?$"
+    reverse_lookup: "^z[a-z]*'?$"
     uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 reverse_lookup:
-  comment_format:
-    - "xlit/hspnz/一丨丿丶乙/"
-  dictionary: luna_pinyin
+  dictionary: pinyin_simp
   preedit_format:
     - "xform/([nl])v/$1ü/"
     - "xform/([nl])ue/$1üe/"
     - "xform/([jqxy])v/$1u/"
-  prefix: "`"
+  prefix: z
   suffix: "'"
-  tips: "〔拼音〕"
+  tips: "【 拼音 】"
 schema:
   author:
-    - "四季的風"
-    - "雪齋"
-    - "Kunki Chou"
+    - "创始人 王永民先生"
   dependencies:
-    - luna_pinyin
+    - pinyin_simp
   description: |
-    五筆畫
-    h,s,p,n,z 代表橫、豎、撇、捺、折
+    韩明辉的五笔86 来自wubi86_jidian
     
-  name: "五筆畫"
-  schema_id: stroke
-  version: 0.5
+  name: "五笔86-韩"
+  schema_id: han
+  version: 1.0
 speller:
-  alphabet: abcdefghijklmnopqrstuvwxyz
-  delimiter: " '"
+  auto_select: true
+  auto_select_unique_candidate: true
+  max_code_length: 4
 switches:
   - name: ascii_mode
     reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
+  - name: extended_charset
+    states: ["常用", "扩展"]
   - name: ascii_punct
     states: ["。，", "．，"]
 translator:
-  comment_format:
-    - "xform/~//"
-    - "xlit/hspnz/一丨丿丶乙/"
-  dictionary: stroke
-  preedit_format:
-    - "xlit/hspnz/一丨丿丶乙/"
+  db_class: tabledb
+  dictionary: han
+  disable_user_dict_for_patterns:
+    - "^z.*$"
+  enable_charset_filter: true
+  enable_encoder: true
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: false
+  max_phrase_length: 10

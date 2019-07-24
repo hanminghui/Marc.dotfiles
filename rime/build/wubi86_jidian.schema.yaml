@@ -2,9 +2,9 @@ __build_info:
   rime_version: 1.4.0
   timestamps:
     default: 1526362370
-    default.custom: 1563938480
-    wubi86.custom: 1563936501
-    wubi86.schema: 1526362370
+    default.custom: 1563945510
+    wubi86_jidian.custom: 1563946996
+    wubi86_jidian.schema: 1563942267
 engine:
   processors:
     - ascii_composer
@@ -25,6 +25,7 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - table_translator
+    - "lua_translator@date_translator"
 key_binder:
   bindings:
     - {accept: "Control+p", send: Up, when: composing}
@@ -61,9 +62,11 @@ key_binder:
     - {accept: "Control+period", toggle: ascii_punct, when: always}
     - {accept: space, send: space, when: has_menu}
     - {accept: space, send: Escape, when: composing}
+    - {accept: semicolon, send: 2, when: has_menu}
+    - {accept: apostrophe, send: 3, when: has_menu}
   import_preset: default
 menu:
-  page_size: 9
+  page_size: 5
 punctuator:
   full_shape:
     " ": {commit: "　"}
@@ -148,20 +151,18 @@ reverse_lookup:
     - "xform/([jqxy])v/$1u/"
   prefix: z
   suffix: "'"
-  tips: "〔拼音〕"
+  tips: "【 拼音 】"
 schema:
   author:
-    - "發明人 王永民先生"
+    - "创始人 王永民先生"
   dependencies:
     - pinyin_simp
   description: |
-    五筆字型86版
-    碼表源自 ibus-table
-    敲 z 鍵進入拼音反查
+    五笔字形 86 极点极爽版
     
-  name: "五笔86"
-  schema_id: wubi86
-  version: 0.21
+  name: "极点五笔86"
+  schema_id: wubi86_jidian
+  version: 1.0
 speller:
   auto_select: true
   auto_select_unique_candidate: true
@@ -173,16 +174,17 @@ switches:
   - name: full_shape
     states: ["半角", "全角"]
   - name: extended_charset
-    states: ["常用", "增廣"]
+    states: ["常用", "扩展"]
   - name: ascii_punct
     states: ["。，", "．，"]
 translator:
-  dictionary: wubi86
+  db_class: tabledb
+  dictionary: wubi86_jidian
   disable_user_dict_for_patterns:
     - "^z.*$"
   enable_charset_filter: true
   enable_encoder: true
   enable_sentence: false
   enable_user_dict: false
-  encode_commit_history: true
-  max_phrase_length: 4
+  encode_commit_history: false
+  max_phrase_length: 10

@@ -1,7 +1,9 @@
 var:
-  last_build_time: 1563938501
-  previously_selected_schema: wubi86
+  last_build_time: 1563948600
+  previously_selected_schema: han
   schema_access_time:
+    han: 1563947757
     luna_pinyin: 1563938407
     luna_pinyin_simp: 1563938616
     wubi86: 1563938689
+    wubi86_jidian: 1563945535
