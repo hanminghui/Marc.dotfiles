@@ -12,8 +12,6 @@ files+=($HOME/.vim/UltiSnipsSnippets)
 files+=($HOME/.tmux.conf)
 # i3
 files+=($HOME/.config/i3)
-# ibus-rime
-files+=($HOME/.config/ibus/rime)
 # X
 files+=($HOME/.xinitrc)
 files+=($HOME/.Xresources)

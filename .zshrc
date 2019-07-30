@@ -9,6 +9,8 @@ export QT_IM_MODULE=ibus
 # Path to your oh-my-zsh installation.
 export ZSH="/home/han/.oh-my-zsh"
 
+[ -n "$XTERM_VERSION" ] && transset-df 0.85 --id "$WINDOWID" >/dev/null
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -111,6 +113,8 @@ alias W='whatis'
 alias M='man'
 alias WC='wc -l'
 alias E='exit'
+alias R='reboot'
+alias OFF='poweroff'
 # --------------------------------------------------
 # open VIM with no plugins or vimrc, for large files
 alias VIM='vim -u NONE'

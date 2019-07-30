@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# toggle transparent of the xterm
+# by xcompmgr
+
+# first find if it is transparent now
+isTransparent=`pgrep xcompmgr &`
+if [ -z "$isTransparent" ]
+then
+	xcompmgr -c &
+	echo Toggle to Transparent
+else
+	kill $isTransparent
+    echo Toggle to Opaque
+fi
