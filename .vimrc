@@ -17,6 +17,8 @@ set shiftwidth=4
 syntax on
 set smartindent
 set backspace=indent,eol,start
+" CTRL-A could be use on alphabet
+set nrformats=alpha
 
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
@@ -111,6 +113,7 @@ call plug#begin('~/.vim/plugged')
 
 " --------------------------------------------------
 Plug 'ervandew/supertab'
+" use ctrl-v + tab to insert a literal tab in insert mode
 
 " --------------------------------------------------
 Plug 'Valloric/YouCompleteMe'
@@ -157,7 +160,7 @@ let g:UltiSnipsJumpForwardTrigger = "<s-tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-tab>"
 
 " --------------------------------------------------
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs', { 'for': ['c','cpp'] }
 
 " --------------------------------------------------
 Plug 'ludovicchabant/vim-gutentags'
