@@ -10,6 +10,10 @@ snippet un "using namesapce"
 using namespace ${1:NAMESPACE};
 endsnippet
 
+snippet uns "using namesapce"
+using namespace std;
+endsnippet
+
 snippet s: "std::"
 std::
 endsnippet
@@ -61,7 +65,7 @@ snippet incvec "vector" b
 #include <vector>
 endsnippet
 
-snippet vec "vector"
+snippet vec "vector" w
 std::vector<${1:TYPE}> ${2:NAME}
 endsnippet
 
@@ -109,6 +113,10 @@ snippet incsta "stack" b
 #include <stack>
 endsnippet
 
+snippet stack "std::stack"
+std::stack<${1:TYPE}> ${2:NAME}
+endsnippet
+
 snippet incque "queue" b
 #include <queue>
 endsnippet
@@ -123,10 +131,22 @@ snippet incite "iterator" b
 #include <iterator>
 endsnippet
 
+snippet binserter "std::back_inserter" w
+std::back_inserter(${1:TO})
+endsnippet
+
 # =============== Algorithms Library ===============
 
 snippet incalg "algorithm" b
 #include <algorithm>
+endsnippet
+
+snippet find "std::find"
+std::find(${1:BEGIN}, ${2:END}, ${3:VALUE})
+endsnippet
+
+snippet copy "std::copy"
+std::copy(${1:BEGIN}, ${2:END}, ${3:DESTINATION})
 endsnippet
 
 # ================ Numerics Library ================
@@ -180,7 +200,35 @@ snippet coutes "std::cout"
 std::cout << "${1:out}" << std::endl;
 endsnippet
 
+snippet endl "std::endl"
+std::endl
+endsnippet
+
 snippet cin "std::cin"
 std::cin >> ${1:IN};
 endsnippet
 
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                  My Functions                  │
+# └────────────────────────────────────────────────┘
+
+# ====================== split =====================
+# if delimiter is at the beginning, the first substring is empty
+# if delimiter is at the end, there is no last empty substring
+# <vector> <string> needed
+snippet split "cppsplit"
+void split(const std::string& s,
+		   const std::string& delimiter,
+		   std::vector<std::string>& strs)
+{
+	int start = 0, pos = 0;
+	while((pos = s.find(delimiter, start)) != -1)
+	{
+		strs.push_back(s.substr(start, pos-start));
+		start = pos + delimiter.length();
+	}
+	if(start < s.length())
+	    strs.push_back(s.substr(start, s.length() - start));
+}
+endsnippet
