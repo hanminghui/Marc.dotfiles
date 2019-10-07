@@ -3,10 +3,27 @@
 " │                   atrributes                   │
 " └────────────────────────────────────────────────┘
 set shortmess=atI
-" set lines=35 columns=100
 colorscheme desert
 set t_Co=256
-set guifont=Anonymous\ Pro\ 14
+" set the font
+if has("gui_running")
+	set lines=35 columns=140
+" linux
+  if has("gui_gtk2")
+    set guifont=Anonymous\ Pro\ 14
+" mac
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+" windows
+  elseif has("win32") || has("win64")
+    set guifont=Anonymous\ Pro:h14:cANSI
+  endif
+endif
+" encoding
+set fileencodings=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set encoding=utf-8
 set linespace=3
 set number
 set cursorline
@@ -18,7 +35,7 @@ syntax on
 set smartindent
 set backspace=indent,eol,start
 " CTRL-A could be use on alphabet
-set nrformats=alpha
+set nrformats=bin,octal,hex,alpha
 
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
@@ -39,6 +56,8 @@ set path+=/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include/
 set path+=/usr/include/gtk-3.0
 " noshowmode need by plug echodoc and airline
 set noshowmode
+set incsearch
+set showcmd
 
 " PART 2
 " ┌────────────────────────────────────────────────┐
@@ -62,41 +81,17 @@ nnoremap <silent><Leader>w <C-w><C-w>
 nnoremap <leader>v :call ToggleVirtualEdit()<CR>
 " call ToggleLineNumber in my scripts
 nnoremap <leader>n :call ToggleLineNumber()<CR>
+" call ToggleHighlightSearch in my scripts
+nnoremap <leader>s :call ToggleHighlightSearch()<CR>
 
 "  jump to header in new tab
 " --------------------------------------------------------------------------------
 nnoremap gf <C-W>gf
 
-" New line
-" --------------------------------------------------------------------------------
-" press <TAB/SHIFT+TAB> to add a new line without entering INSERT MODE
-" and stay in the line where you have been before
-" nmap <S-TAB> O<ESC>j
-" nmap <TAB> o<ESC>k
-" press <TAB/SHIFT+TAB> to add a new line without entering INSERT MODE
-" nmap <S-TAB> O<ESC>
-" nmap <TAB> o<ESC>
-
-" New space
-" --------------------------------------------------------------------------------
-" press SPACE to add a space
-" nmap <SPACE> a<SPACE><ESC>h
-
-" Commenting blocks of code.
-" --------------------------------------------------------------------------------
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-autocmd FileType vim              let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-
-" :help open help in new tab
+" :h open help in new tab
 " --------------------------------------------------
-cnoreabbrev <expr> help 
-	\ getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+cnoreabbrev <expr> h 
+	\ getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'help'
 " :e to edit file in new tab
 " --------------------------------------------------
 cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabe' : 'e'
@@ -110,6 +105,9 @@ cmap w!! w !sudo tee > /dev/null %
 " └────────────────────────────────────────────────┘
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
+
+" --------------------------------------------------
+Plug 'tpope/vim-commentary'
 
 " --------------------------------------------------
 Plug 'ervandew/supertab'
@@ -247,26 +245,26 @@ let g:asyncrun_bell = 1
 
 " 设置 F10 打开/关闭 Quickfix 窗口
 nnoremap <silent> <F10> :call asyncrun#quickfix_toggle(6)<cr>
-nnoremap <silent> ,0 :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <leader>0 :call asyncrun#quickfix_toggle(6)<cr>
 " 设置 F9  编译单文件
 nnoremap <silent> <F9> :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-nnoremap <silent> ,9 :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <leader>9 :AsyncRun g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 " 设置 F5  运行
 nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-nnoremap <silent> ,5 :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+nnoremap <leader>5 :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml'] 
 " 设置 F7  编译整个项目
 nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
-nnoremap <silent> ,7 :AsyncRun -cwd=<root> make <cr>
+nnoremap <leader>7 :AsyncRun -cwd=<root> make <cr>
 " 设置 F8  运行整个项目
 nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
-nnoremap <silent> ,8 :AsyncRun -cwd=<root> -raw make run <cr>
+nnoremap <leader>8 :AsyncRun -cwd=<root> -raw make run <cr>
 " 设置 F6  执行测试
 nnoremap <silent> <F6> :AsyncRun -cwd=<root> -raw make test <cr>
-nnoremap <silent> ,6 :AsyncRun -cwd=<root> -raw make test <cr>
+nnoremap <leader>6 :AsyncRun -cwd=<root> -raw make test <cr>
 " 设置 F4  更新Makefile文件
 nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
-nnoremap <silent> ,4 :AsyncRun -cwd=<root> cmake . <cr>
+nnoremap <leader>4 :AsyncRun -cwd=<root> cmake . <cr>
 
 " 延迟按需加载，使用到命令的时候再加载或者打开对应文件类型才加载
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -311,6 +309,16 @@ function ToggleLineNumber ()
 	elseif &number ==# "0"
 		set number
 		echo "turn ON line number"
+	endif
+endfunction
+
+function ToggleHighlightSearch ()
+	if &hlsearch ==# "1"
+		set nohlsearch
+		echo "turn OFF highlight search"
+	elseif &hlsearch ==# "0"
+		set hlsearch
+		echo "turn ON highlight search"
 	endif
 endfunction
 

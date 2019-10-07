@@ -1,0 +1,309 @@
+# ==================================================
+# ┌────────────────────────────────────────────────┐
+# │                     include                    │
+# └────────────────────────────────────────────────┘
+
+# include all c++ standard library headers
+# only used for learning and test
+# not portable !!!!!
+snippet inccpp "all standard library headers" b
+#include <bits/stdc++.h>
+endsnippet
+
+# ================ Utilities Library ===============
+
+# ---------------- language support ----------------
+
+#                  Type support
+
+snippet st "size_t"
+size_t
+endsnippet
+# <typeinfo>                              <typeinfo>
+snippet inctpi "typeinfo"
+#include <typeinfo>
+endsnippet
+
+#              Dynamic memory management            
+# <memory>                                  <memory>
+snippet incmem "memory" b
+#include <memory>
+endsnippet
+
+# ------------ General-purpose utilities -----------
+
+#                       Bitset
+# <bitset>                                  <bitset>
+snippet incbit "bitset"
+#include <bitset>
+endsnippet
+
+snippet bitset "bitset"
+std::bitset<${1:N}> ${2:NAME}
+endsnippet
+
+#                  Function objects                 
+# <functional>                          <functional>
+snippet incfun "functional" b
+#include <functional>
+endsnippet
+# <chrono>                                  <chrono>
+snippet incchr "chrono" b
+#include <chrono>
+endsnippet
+
+# ================= Strings Library ================
+# <string>                                  <string>
+snippet incstr "string" b
+#include <string>
+endsnippet
+
+snippet str "string" w
+std::string
+endsnippet
+
+snippet getl "getline"
+std::getline(${1:FROM}, ${2:TO})
+endsnippet
+
+# =============== Containers Library ===============
+
+# --------------- Sequence Containers --------------
+# <array>                                    <array>
+snippet incarr "array" b
+#include <array>
+endsnippet
+snippet arr "array"
+std::array
+endsnippet
+snippet arr. "array"
+std::array<${1:TYPE}, ${2:N}> ${3:NAME}
+endsnippet
+# <vector>                                  <vector>
+snippet incvec "vector" b
+#include <vector>
+endsnippet
+snippet vec "vector" w
+std::vector
+endsnippet
+snippet vec. "vector" w
+std::vector<${1:TYPE}> ${2:NAME}
+endsnippet
+# <deque>                                    <deque>
+snippet incdeq "deque" b
+#include <deque>
+endsnippet
+snippet deq "std::deque" w
+std::deque
+endsnippet
+snippet deq. "std::dqueue" w
+std::deque<${1:TYPE}> ${2:NAME}
+endsnippet
+# <list>                                      <list>
+snippet inclis "list" b
+#include <list>
+endsnippet
+snippet lis "list"
+std::list
+endsnippet
+snippet lis. "list"
+std::list<${1:TYPE}> ${2:NAME}
+endsnippet
+# <forward_list>                      <forward_list>
+snippet incflis "forward_list" b
+#include <forward_list>
+endsnippet
+snippet flis "list"
+std::forward_list
+endsnippet
+snippet flis. "list"
+std::forward_list<${1:TYPE}> ${2:NAME}
+endsnippet
+
+# ------------- Associative containers -------------
+# <set>                                        <set>
+snippet incset "set" b
+#include <set>
+endsnippet
+snippet set "set" w
+std::set
+endsnippet
+snippet set. "set" w
+std::set<${1:TYPE}> ${2:NAME}
+endsnippet
+# <map>                                        <map>
+snippet incmap "map" b
+#include <map>
+endsnippet
+snippet map "map" w
+std::map
+endsnippet
+snippet map. "map" w
+std::map<${1:KEY_TYPE}, ${2:VALUE_TYPE}> ${3:NAME}
+endsnippet
+# <unordered_set>                    <unordered_set>
+snippet incuset "unordered_set" b
+#include <unordered_set>
+endsnippet
+snippet uset "unordered_set" w
+std::unordered_set
+endsnippet
+snippet uset. "unordered_set" w
+std::unordered_set<${1:TYPE}> ${2:NAME}
+endsnippet
+# <unordered_map>                    <unordered_map>
+snippet incumap "unordered_map" b
+#include <unordered_map>
+endsnippet
+snippet umap "unordered_map" w
+std::unordered_map<${1:KEY_TYPE}, ${2:VALUE_TYPE}> ${3:NAME}
+endsnippet
+
+# --------------- Container adaptors ---------------
+# <stack>                                    <stack>
+snippet incsta "stack" b
+#include <stack>
+endsnippet
+snippet stack "std::stack"
+std::stack<${1:TYPE}> ${2:NAME}
+endsnippet
+# <queue>                                    <queue>
+snippet incque "queue" b
+#include <queue>
+endsnippet
+snippet que "std::queue"
+std::queue
+endsnippet
+snippet que. "std::queue"
+std::queue<${1:TYPE}> ${2:NAME}
+endsnippet
+snippet pque "std::queue"
+std::priority_queue
+endsnippet
+snippet pque. "std::queue"
+std::priority_queue<${1:TYPE}, ${2:CONTAINER}, ${3:COMPARE}> ${3:NAME}
+endsnippet
+# <span>                                      <span>
+snippet incspa "span" b
+#include <span>
+endsnippet
+
+# ================ Iterators Library ===============
+# <iterator>                              <iterator>
+snippet incite "iterator" b
+#include <iterator>
+endsnippet
+
+snippet binserter "std::back_inserter" w
+std::back_inserter(${1:TO})
+endsnippet
+
+# =============== Algorithms Library ===============
+# <algorithm>                            <algorithm>
+snippet incalg "algorithm" b
+#include <algorithm>
+endsnippet
+
+snippet find "std::find"
+std::find(${1:BEGIN}, ${2:END}, ${3:VALUE})
+endsnippet
+
+snippet copy "std::copy"
+std::copy(${1:BEGIN}, ${2:END}, ${3:DESTINATION})
+endsnippet
+
+# ================ Numerics Library ================
+# <cmath>                                    <cmath>
+snippet inccma "cmath" b
+#include <cmath>
+endsnippet
+# <random>                                  <random>
+snippet incran "random" b
+#include <random>
+endsnippet
+
+# ============== Input/output Library ==============
+# <iostream>                              <iostream>
+snippet incios "iostream" b
+#include <iostream>
+endsnippet
+snippet cout "std::cout" w
+std::cout
+endsnippet
+snippet o< "std::cout" w
+std::cout << ${1:out};
+endsnippet
+snippet o<s "std::cout" w
+std::cout << "${1:out}";
+endsnippet
+snippet o<e "std::cout" w
+std::cout << ${1:out} << std::endl;
+endsnippet
+snippet o<se "std::cout" w
+std::cout << "${1:out}" << std::endl;
+endsnippet
+snippet endl "std::endl" w
+std::endl
+endsnippet
+snippet cin "std::cin" w
+std::cin
+endsnippet
+snippet i> "std::cin" w
+std::cin >> ${1:IN};
+endsnippet
+# <fstream>                                <fstream>
+snippet incfs "fstream" b
+#include <fstream>
+endsnippet
+snippet ifs "ifstream"
+std::ifstream ${1:NAME}
+endsnippet
+snippet ofs "ofstream"
+std::ofstream ${1:NAME}
+endsnippet
+snippet fs "fstream"
+std::fstream ${1:NAME}
+endsnippet
+# <sstream>                                <sstream>
+snippet incss "sstream" b
+#include <sstream>
+endsnippet
+snippet iss "istringstream"
+std::istringstream ${1:NAME}
+endsnippet
+snippet oss "ostringstream"
+std::ostringstream ${1:NAME}
+endsnippet
+snippet ss "stringstream"
+std::stringstream ${1:NAME}
+endsnippet
+# <streambuf>                            <streambuf>
+snippet incsb "streambuf" b
+#include <streambuf>
+endsnippet
+snippet sb "streambuf"
+std::streambuf ${1:NAME}
+endsnippet
+# ============= Thread Support Library =============
+# <thread>                                  <thread>
+snippet incthr "thread" b
+#include <thread>
+endsnippet
+# <mutex>                                    <mutex>
+snippet incmut "mutex" b
+#include <mutex>
+endsnippet
+# <future>                                  <future>
+snippet incfut "future" b
+#include <future>
+endsnippet
+
+# ==================== C Headers ===================
+snippet inccass "Description"
+#include <cassert>
+endsnippet
+
+# ┌────────────────────────────────────────────────┐
+# │                       End                      │
+# └────────────────────────────────────────────────┘
+# ==================================================

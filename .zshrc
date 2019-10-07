@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:$HOME/scripts
+export PATH=$PATH:$HOME/scripts:$HOME/.gem/ruby/2.6.0/bin
 # for ibus
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
@@ -117,7 +117,9 @@ alias R='reboot'
 alias OFF='poweroff'
 # --------------------------------------------------
 # open VIM with no plugins or vimrc, for large files
-alias VIM='vim -u NONE'
+# -u NONE no source .vimrc
+# -N nocompatible vi
+alias VIM='vim -u NONE -N'
 # --------------------------------------------------
 # alias for pacman
 # update all packages

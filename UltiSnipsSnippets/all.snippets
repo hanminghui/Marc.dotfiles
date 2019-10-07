@@ -20,7 +20,6 @@ snippet box "draw a Box"
 `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
 │ $1 │
 `!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
-$0
 endsnippet
 
 # draw a fix length box with string in it
@@ -30,7 +29,6 @@ snippet "(\d+)box" "draw a Box" r
 `!p snip.rv = '┌' + '─' * (int(match.group(1)) - 2) + '┐'`
 │`!p snip.rv = " " * int(int(match.group(1)) - len(t[1]) - int((int(match.group(1)) - len(t[1]))/2) - 2)` ${1:Title} `!p snip.rv = " " * int((int(match.group(1)) - len(t[1]))/2 - 2)`│
 `!p snip.rv = '└' + '─' * (int(match.group(1)) - 2) + '┘'`
-$0
 endsnippet
 
 # draw a line
@@ -57,7 +55,6 @@ endsnippet
 # ------------------------------
 snippet "(\d+)([ ~`!@#$%^&*()-_=+{}\|;:'",.<>/?])t" "title in middle" r
 `!p snip.rv = match.group(2) * int(int(match.group(1)) - len(t[1]) - int((int(match.group(1)) - len(t[1]))/2) - 1)` ${1:Title} `!p snip.rv = match.group(2) * int((int(match.group(1)) - len(t[1]))/2 - 1)`
-$0
 endsnippet
 
 # title 2 sides
@@ -65,7 +62,6 @@ endsnippet
 # ------------------------------
 snippet "(\d+)([ ~`!@#$%^&*()-_=+{}\|;:'",.<>/?])t2" "title 2 sides" r
 ${1:Title} `!p snip.rv = match.group(2) * (int(match.group(1)) - 2 * len(t[1]) - 2) + ' ' + t[1]`
-$0
 endsnippet
 
 # title 2 different sides
@@ -73,7 +69,6 @@ endsnippet
 # ------------------------------
 snippet "(\d+)([ ~`!@#$%^&*()-_=+{}\|;:'",.<>/?])t2d" "title 2 different sides" r
 ${1:Title1} `!p snip.rv = match.group(2) * (int(match.group(1)) - len(t[1]) - len(t[2]) - 2)` ${2:Title2}
-$0
 endsnippet
 
 # title with a top line
@@ -82,7 +77,6 @@ endsnippet
 snippet "([ ~`!@#$%^&*()-_=+{}\|;:'",.<>/?])tt" "title with bottom line" r
 `!p snip.rv = match.group(1) * len(t[1])`
 ${1:Title}
-$0
 endsnippet
 
 # title with a bottom line
@@ -91,6 +85,5 @@ endsnippet
 snippet "([ ~`!@#$%^&*()-_=+{}\|;:'",.<>/?])tb" "title with bottom line" r
 ${1:Title}
 `!p snip.rv = match.group(1) * len(t[1])`
-$0
 endsnippet
 

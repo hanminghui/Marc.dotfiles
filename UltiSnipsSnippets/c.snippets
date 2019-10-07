@@ -45,6 +45,13 @@ endsnippet
 # │                     define                     │
 # └────────────────────────────────────────────────┘
 
+snippet #hg "header guards" b
+#ifndef ${1:PREPROCESSOR_VARIABLE}
+#define $1
+${2:/*STATEMENTS*/}
+#endif
+endsnippet
+
 snippet def "#define" b
 #define ${1:MACROS}
 endsnippet
@@ -89,6 +96,14 @@ snippet s.. "static" w
 static ${1:TYPE}
 endsnippet
 
+snippet boolt "bool true" w
+bool ${1:NAME} = true;
+endsnippet
+
+snippet boolf "bool false" w
+bool ${1:NAME} = false;
+endsnippet
+
 # ==================================================
 # ┌────────────────────────────────────────────────┐
 # │                    Function                    │
@@ -103,6 +118,14 @@ endsnippet
 
 snippet r "return"
 return ${1:RET_VAL};
+endsnippet
+
+snippet rt "return true"
+return true;
+endsnippet
+
+snippet rf "return false"
+return false;
 endsnippet
 
 snippet main "add main function"
@@ -125,10 +148,6 @@ if(${1:CONDITION})
 {
     ${2:STATEMENTS}
 }
-endsnippet
-
-snippet ifs "short if"
-if(${1:CONDITION}) ${2:STATEMENTS}
 endsnippet
 
 snippet else "simple else"
