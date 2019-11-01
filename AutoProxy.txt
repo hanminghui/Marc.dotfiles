@@ -15,6 +15,7 @@
 ||imgur.com
 ||instagram.com
 ||pixiv.net
+||pinterest.com
 ||tumblr.com
 
 !资源加载
