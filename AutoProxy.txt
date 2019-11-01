@@ -1,20 +1,24 @@
 !站点
+!==============================
 ||google.com
 ||youtube.com
 ||wikipedia.org
 ||stackoverflow.com
 
 !社交
+!==============================
 ||twitter.com
 ||facebook.com
 
 !图
+!==============================
 ||imgur.com
 ||instagram.com
 ||pixiv.net
 ||tumblr.com
 
 !资源加载
+!==============================
 ||avatars.io
 ||ytimg.com
 ||gstatic.com
@@ -23,3 +27,4 @@
 ||googlevideo.com
 ||fonts.googleapis.com
 ||googleusercontent.com
+||raw.githubusercontent.com
