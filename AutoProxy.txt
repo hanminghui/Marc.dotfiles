@@ -28,4 +28,9 @@
 ||googlevideo.com
 ||fonts.googleapis.com
 ||googleusercontent.com
+!--------
+!github
 ||raw.githubusercontent.com
+!--------
+!pinterest
+||pinimg.com
