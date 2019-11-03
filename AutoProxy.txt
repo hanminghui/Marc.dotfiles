@@ -1,8 +1,8 @@
 !站点
 !==============================
 !--------
-google.com
 ||google.com
+||google.com.hk
 ||gstatic.com
 ||ggpht.com
 ||googlevideo.com
