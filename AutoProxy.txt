@@ -1,6 +1,7 @@
 !站点
 !==============================
 !--------
+google.com
 ||google.com
 ||gstatic.com
 ||ggpht.com
