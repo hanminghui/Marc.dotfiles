@@ -94,7 +94,7 @@ cnoreabbrev <expr> h
 	\ getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'help'
 " :e to edit file in new tab
 " --------------------------------------------------
-cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabe' : 'e'
+cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabedit' : 'e'
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
