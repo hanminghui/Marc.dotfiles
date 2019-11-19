@@ -23,28 +23,29 @@ xterm*pointerColor:white
 ! urxvt settings
 ! ================================================================================
 !urxvt transparent
-urxvt.transparent: true
-urxvt.shading:10
+!urxvt.transparent: false
+!urxvt.shading:130
 
 !! Appearance
 urxvt.termName: rxvt-unicode
-urxvt.background: black
-urxvt.foreground: gray
+urxvt.background:rgb:30/30/30
+urxvt.foreground:white
 urxvt.cursorBlink: true
 urxvt.scrollBar: false
 urxvt.scrollBar_right: false
 urxvt.urgentOnBell: true
 !! Font prefferenes
-urxvt.font: xft:Anonymous Pro:pixelsize=18:antialias=true,\
-            xft:Source Han Sans CN:pixelsize=18:antialias=true
-urxvt.boldFont: xft:Anonymous Pro:pixelsize=18:weight=bold
-urxvt.letterSpace: -0
+Xft.dpi: 96
+Xft.antialias:true
+URxvt.letterSpace: 1
+URxvt.font: xft:Anonymous Pro:style=Regular:pixelsize=18,\
+            xft:DejaVu Sans:pixelsize=18,\
+            xft:Source Han Sans CN:style=Regular:pixelsize=24:minispace=True
+URxvt.boldFont: xft:Anonymous Pro:style=Bold:pixelsize=18,\
+            xft:Source Han Sans CN:style=Bold:pixelsize=18:minispace=False
 !! Larger history limit
 urxvt.saveLines: 1000000
 
-!! Change font size on Control-Plus/Minus
-urxvt.keysym.Control-0x2b: perl:font-size:increase
-urxvt.keysym.Control-0x2d: perl:font-size:decrease
 !! Tango color theme
 !! Strange - it matches tango from gnome-terminal, but looks different
 URxvt.color0: rgb:00/00/00

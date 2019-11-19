@@ -58,6 +58,9 @@ set path+=/usr/include/gtk-3.0
 set noshowmode
 set incsearch
 set showcmd
+" autocomplete menu in Ex commands
+set wildmenu
+set wildmode=full
 
 " PART 2
 " ┌────────────────────────────────────────────────┐
