@@ -1,6 +1,9 @@
+!https://raw.githubusercontent.com/hanminghui/Marc.dotfiles/master/AutoProxy.txt
 !站点
 !==============================
 !--------
+google.com
+google.co
 ||google.com
 ||google.com.hk
 ||gstatic.com
