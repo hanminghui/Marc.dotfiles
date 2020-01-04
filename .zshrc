@@ -125,6 +125,9 @@ alias VIM='vim -u NONE -N'
 # update all packages
 alias pacmanua='sudo pacman -Syu'
 alias pacmani='sudo pacman -S'
+# --------------------------------------------------
+# colored javac
+alias javacc='grc -e javac'
 
 # ================================================================================
 # key bindings

@@ -36,7 +36,7 @@ bindsym $mod+Return exec gnome-terminal
 # start terminal in pwd
 # need 'xcwd' : https://github.com/schischi/xcwd
 #bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec xterm
-bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec gnome-terminal
+bindsym $mod+Shift+Return exec gnome-terminal --working-directory="`xcwd`"
 
 # kill focused window
 bindsym $mod+Shift+q kill

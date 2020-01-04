@@ -37,6 +37,9 @@ set backspace=indent,eol,start
 " CTRL-A could be use on alphabet
 set nrformats=bin,octal,hex,alpha
 
+" no auto comment leader when use o or O
+au BufEnter * set fo-=o
+
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
@@ -95,9 +98,9 @@ nnoremap gf <C-W>gf
 " --------------------------------------------------
 cnoreabbrev <expr> h 
 	\ getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'help'
-" :e to edit file in new tab
+" :E to edit file in new tab
 " --------------------------------------------------
-cnoreabbrev <expr> e getcmdtype() == ":" && getcmdline() == 'e' ? 'tabedit' : 'e'
+cnoreabbrev <expr> E getcmdtype() == ":" && getcmdline() == 'E' ? 'tabedit' : 'E'
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -110,14 +113,17 @@ cmap w!! w !sudo tee > /dev/null %
 call plug#begin('~/.vim/plugged')
 
 " --------------------------------------------------
+"  gcc to comment and uncomment, gc is an operator, also :Commentary
 Plug 'tpope/vim-commentary'
 
 " --------------------------------------------------
 Plug 'ervandew/supertab'
 " use ctrl-v + tab to insert a literal tab in insert mode
 
+" Unmanaged plugin (manually installed and updated)
 " --------------------------------------------------
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug '~/.vim/plugged/YouCompleteMe'
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
@@ -145,6 +151,7 @@ let g:ycm_filetype_whitelist = {
 			\ "c":1,
 			\ "cpp":1, 
 			\ "objc":1,
+			\ "java":1,
 			\ "python":1, 
 			\ "sh":1,
 			\ "zsh":1,
@@ -161,7 +168,11 @@ let g:UltiSnipsJumpForwardTrigger = "<s-tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-tab>"
 
 " --------------------------------------------------
-Plug 'jiangmiao/auto-pairs', { 'for': ['c','cpp'] }
+Plug 'jiangmiao/auto-pairs', { 'for': ['c','cpp', 'java'] }
+
+" --------------------------------------------------
+"  :Move
+Plug 'tpope/vim-eunuch'
 
 " --------------------------------------------------
 Plug 'ludovicchabant/vim-gutentags'
@@ -204,6 +215,9 @@ Plug 'vim-airline/vim-airline'
 " --------------------------------------------------
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='base16_monokai'
+
+" --------------------------------------------------
+Plug 'webdevel/tabulous'
 
 " --------------------------------------------------
 Plug 'https://github.com/luochen1990/rainbow'
@@ -270,8 +284,9 @@ nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 nnoremap <leader>4 :AsyncRun -cwd=<root> cmake . <cr>
 
 " 延迟按需加载，使用到命令的时候再加载或者打开对应文件类型才加载
+" --------------------------------------------------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" F4 open the tree
+" F3 open the tree
 map <F3> :NERDTreeToggle<CR>
 
 " --------------------------------------------------
